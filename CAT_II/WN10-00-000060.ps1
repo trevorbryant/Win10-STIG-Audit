@@ -1,15 +1,15 @@
 ﻿## Windows 10 STIG Compliance Audit
 ## Created by Trevor Bryant
 
-$GroupID = "V-63337"
-$GroupTitle = "WN10-00-000030"
-$RuleID = "SV-77827r1_rule"
-$Severity = "CAT I"
-$RuleVersionSTIGID = "WN10-00-000030"
-$RuleTitle = "Mobile systems must encrypt all disks to protect the confidentiality and integrity of all information at rest."
-$CCI = "CCI-001199; CCI-002475; CCI-002476"
+$GroupID = "V-63357"
+$GroupTitle = "WN10-00-000060"
+$RuleID = "SV-77847r1_rule"
+$Severity = "CAT II"
+$RuleVersionSTIGID = "WN10-00-000060"
+$RuleTitle = "Non system-created file shares on a system must limit access to groups that require it."
+$CCI = "CCI-001090"
 
-$Configuration = "How to: Bitlocker"
+$Configuration = (gwmi Win32_Share | Select Name,Path) | Out-String
 $Audit = New-Object -TypeName System.Object
 $Audit | Add-Member -MemberType NoteProperty -Name GroupID -Value $GroupID
 $Audit | Add-Member -MemberType NoteProperty -Name GroupTitle -Value $GroupTitle

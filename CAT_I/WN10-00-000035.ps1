@@ -1,15 +1,15 @@
 ﻿## Windows 10 STIG Compliance Audit
 ## Created by Trevor Bryant
 
-$GroupID = "V-63337"
-$GroupTitle = "WN10-00-000030"
-$RuleID = "SV-77827r1_rule"
+$GroupID = "V-63345"
+$GroupTitle = "WN10-00-000035"
+$RuleID = "SV-77835r1_rule"
 $Severity = "CAT I"
-$RuleVersionSTIGID = "WN10-00-000030"
-$RuleTitle = "Mobile systems must encrypt all disks to protect the confidentiality and integrity of all information at rest."
-$CCI = "CCI-001199; CCI-002475; CCI-002476"
+$RuleVersionSTIGID = "WN10-00-000035"
+$RuleTitle = "The operating system must employ a deny-all, permit-by-exception policy to allow the execution of authorized software programs."
+$CCI = "CCI-001774"
 
-$Configuration = "How to: Bitlocker"
+$Configuration = "How to: AppWhitelist"
 $Audit = New-Object -TypeName System.Object
 $Audit | Add-Member -MemberType NoteProperty -Name GroupID -Value $GroupID
 $Audit | Add-Member -MemberType NoteProperty -Name GroupTitle -Value $GroupTitle

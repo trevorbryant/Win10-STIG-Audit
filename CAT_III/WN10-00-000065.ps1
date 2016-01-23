@@ -1,15 +1,26 @@
 ﻿## Windows 10 STIG Compliance Audit
 ## Created by Trevor Bryant
 
-$GroupID = "V-63337"
-$GroupTitle = "WN10-00-000030"
-$RuleID = "SV-77827r1_rule"
-$Severity = "CAT I"
-$RuleVersionSTIGID = "WN10-00-000030"
-$RuleTitle = "Mobile systems must encrypt all disks to protect the confidentiality and integrity of all information at rest."
-$CCI = "CCI-001199; CCI-002475; CCI-002476"
+$GroupID = "V-63359"
+$GroupTitle = "WN10-00-000065"
+$RuleID = "SV-77849r1_rule"
+$Severity = "CAT III"
+$RuleVersionSTIGID = "WN10-00-000065"
+$RuleTitle = "Unused accounts must be disabled or removed from the system after 35 days of inactivity."
+$CCI = "CCI-000795"
 
-$Configuration = "How to: Bitlocker"
+$Users = ([ADSI]('WinNT://{0}' -f $env:COMPUTERNAME)).Children | Where-Object { $_.SchemaClassName -eq 'user' }
+$Users | ForEach {
+    $User = ([ADSI]$_.Path)
+    $UserName = $User.Name
+    $LastLogin = $User.Properties.LastLogin.Value
+    $Enabled = ($User.Properties.UserFlags.Value -band 0x2) -ne 0x2
+    If ($LastLogin -eq $null)
+        {
+            $LastLogin = "Never"
+    } $Configuration = "$UserName,$LastLogin,$Enabled"
+}
+
 $Audit = New-Object -TypeName System.Object
 $Audit | Add-Member -MemberType NoteProperty -Name GroupID -Value $GroupID
 $Audit | Add-Member -MemberType NoteProperty -Name GroupTitle -Value $GroupTitle

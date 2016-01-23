@@ -1,15 +1,24 @@
 ﻿## Windows 10 STIG Compliance Audit
 ## Created by Trevor Bryant
 
-$GroupID = "V-63337"
-$GroupTitle = "WN10-00-000030"
-$RuleID = "SV-77827r1_rule"
+$GroupID = "V-63351"
+$GroupTitle = "WN10-00-000045"
+$RuleID = "SV-77841r1_rule"
 $Severity = "CAT I"
-$RuleVersionSTIGID = "WN10-00-000030"
-$RuleTitle = "Mobile systems must encrypt all disks to protect the confidentiality and integrity of all information at rest."
-$CCI = "CCI-001199; CCI-002475; CCI-002476"
+$RuleVersionSTIGID = "WN10-00-000045"
+$RuleTitle = "An approved, up-to-date, DoD antivirus program must be installed and used."
+$CCI = "CCI-000366"
 
-$Configuration = "How to: Bitlocker"
+$ServiceName = "AgentName"
+$ServiceStatus = (Get-Service -Name $ServiceName -ErrorAction SilentlyContinue).Status
+
+If ($ServiceStatus -Eq $True)
+    {
+        $Configuration = "$ServiceName is $ServiceStatus"
+    } Else {
+        $Configuration = "$ServiceName is not installed"
+}
+
 $Audit = New-Object -TypeName System.Object
 $Audit | Add-Member -MemberType NoteProperty -Name GroupID -Value $GroupID
 $Audit | Add-Member -MemberType NoteProperty -Name GroupTitle -Value $GroupTitle

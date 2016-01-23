@@ -1,15 +1,15 @@
 ﻿## Windows 10 STIG Compliance Audit
 ## Created by Trevor Bryant
 
-$GroupID = "V-63337"
-$GroupTitle = "WN10-00-000030"
-$RuleID = "SV-77827r1_rule"
+$GroupID = "V-63353"
+$GroupTitle = "WN10-00-000050"
+$RuleID = "SV-77843r1_rule"
 $Severity = "CAT I"
-$RuleVersionSTIGID = "WN10-00-000030"
-$RuleTitle = "Mobile systems must encrypt all disks to protect the confidentiality and integrity of all information at rest."
-$CCI = "CCI-001199; CCI-002475; CCI-002476"
+$RuleVersionSTIGID = "WN10-00-000050"
+$RuleTitle = "Local volumes must be formatted using NTFS."
+$CCI = "CCI-000213"
 
-$Configuration = "How to: Bitlocker"
+$Configuration = gwmi Win32_LogicalDisk | Where-Object { $_.DriveType -Eq 3 } | Select DeviceID,FileSystem | Out-String
 $Audit = New-Object -TypeName System.Object
 $Audit | Add-Member -MemberType NoteProperty -Name GroupID -Value $GroupID
 $Audit | Add-Member -MemberType NoteProperty -Name GroupTitle -Value $GroupTitle
