@@ -9,6 +9,7 @@ $RuleVersionSTIGID = "WN10-00-000065"
 $RuleTitle = "Unused accounts must be disabled or removed from the system after 35 days of inactivity."
 $CCI = "CCI-000795"
 
+$Configuration = ""
 $Users = ([ADSI]('WinNT://{0}' -f $env:COMPUTERNAME)).Children | Where-Object { $_.SchemaClassName -eq 'user' }
 $Users | ForEach {
     $User = ([ADSI]$_.Path)
@@ -18,7 +19,7 @@ $Users | ForEach {
     If ($LastLogin -eq $null)
         {
             $LastLogin = "Never"
-    } $Configuration += "$UserName,$LastLogin,$Enabled"
+    } $Configuration += "$UserName,$LastLogin,$Enabled`n"
 }
 
 $Audit = New-Object -TypeName System.Object
