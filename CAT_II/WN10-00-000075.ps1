@@ -1,25 +1,20 @@
 ﻿## Windows 10 STIG Compliance Audit
 ## Created by Trevor Bryant
 
-$GroupID = "V-63359"
-$GroupTitle = "WN10-00-000065"
-$RuleID = "SV-77849r1_rule"
-$Severity = "CAT III"
-$RuleVersionSTIGID = "WN10-00-000065"
-$RuleTitle = "Unused accounts must be disabled or removed from the system after 35 days of inactivity."
-$CCI = "CCI-000795"
+$GroupID = "V-63363"
+$GroupTitle = "WN10-00-000075"
+$RuleID = "SV-77853r1_rule"
+$Severity = "CAT II"
+$RuleVersionSTIGID = "WN10-00-000075"
+$RuleTitle = "Only accounts responsible for the backup operations must be members of the Backup Operators group."
+$CCI = "CCI-000366"
 
 $Configuration = ""
-$Users = ([ADSI]('WinNT://{0}' -f $env:COMPUTERNAME)).Children | Where-Object { $_.SchemaClassName -eq 'user' }
-$Users | ForEach {
-    $User = ([ADSI]$_.Path)
-    $UserName = $User.Name
-    $LastLogin = $User.Properties.LastLogin.Value
-    $Enabled = ($User.Properties.UserFlags.Value -band 0x2) -ne 0x2
-    If ($LastLogin -eq $null)
-        {
-            $LastLogin = "Never"
-    } $Configuration += "$UserName,$LastLogin,$Enabled`n"
+If (Get-Command -Name Get-LocalGroupMember -Eq $True)
+    {
+        $Configuration += Get-LocalGroupMember "Backup Operators"
+    } Else {
+        $Configuration = "Module LocalAccount is not installed"
 }
 
 $Audit = New-Object -TypeName System.Object
