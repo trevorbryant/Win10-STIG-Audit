@@ -1,7 +1,6 @@
 ﻿## Windows 10 STIG Compliance Audit
 ## Version 1, Release 1
-## Created by Trevor Bryant
-## 01/19/2016
+## Created by Trevor Bryant6
 
 $GroupID = ""
 $GroupTitle = ""
