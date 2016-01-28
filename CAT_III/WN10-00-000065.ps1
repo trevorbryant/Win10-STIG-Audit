@@ -18,7 +18,7 @@ $Users | ForEach {
     If ($LastLogin -eq $null)
         {
             $LastLogin = "Never"
-    } $Configuration = "$UserName,$LastLogin,$Enabled"
+    } $Configuration += "$UserName,$LastLogin,$Enabled"
 }
 
 $Audit = New-Object -TypeName System.Object
