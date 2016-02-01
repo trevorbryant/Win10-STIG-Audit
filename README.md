@@ -9,3 +9,9 @@ I haven't seen, or looked hard enough, for a Windows 10 Enterprise audit script 
 3. Logic for category selection and preferred output (CSV/HTML) 
 4. Create shorthand bundle that has flexibility for ingestion
 5. Make something useful that people would use and/or care about
+
+## Instructions
+Nativate to Win10-STIG-Audit directory
+```Powershell
+PS C:\Windows_10_STIG_Audit> .\Execute-Win10STIGAudit.ps1
+```
