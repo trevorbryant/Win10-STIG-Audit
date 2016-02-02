@@ -1,17 +1,18 @@
 ﻿## Windows 10 STIG Compliance Audit
-## Version 1, Release 1
 ## Created by Trevor Bryant
-## 01/19/2016
 
-$GroupID = "V-63331"
-$GroupTitle = "WN10-00-000020"
-$RuleID = "SV-77821r1_rule"
-$Severity = "CAT I"
-$RuleVersionSTIGID = "WN10-00-000020"
-$RuleTitle = "The system must not use removable media as the boot loader."
-$CCI = "CCI-000366"
+$GroupID = "V-63373"
+$GroupTitle = "WN10-00-000095"
+$RuleID = "SV-77863r1_rule"
+$Severity = "CAT II"
+$RuleVersionSTIGID = "WN10-00-000095"
+$RuleTitle = "Permissions for system files and directories must conform to minimum requirements."
+$CCI = "CCI-002165"
 
 $Configuration = ""
+$DirPath = "C:\", "C:\Program Files", "C:\Windows"
+$DirPath | ForEach { $Configuration += Get-ACL $_ | Select PSChildName -ExpandProperty Access | Out-String }
+
 $Audit = New-Object -TypeName System.Object
 $Audit | Add-Member -MemberType NoteProperty -Name GroupID -Value $GroupID
 $Audit | Add-Member -MemberType NoteProperty -Name GroupTitle -Value $GroupTitle
