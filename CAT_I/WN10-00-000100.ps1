@@ -9,7 +9,7 @@ $RuleVersionSTIGID = "WN10-00-000100"
 $RuleTitle = "Internet Information System (IIS) or its subcomponents must not be installed on a workstation"
 $CCI = "CCI-000381"
 
-$Configuration = "How To: WindowsFeature"
+$Configuration = "How To: WindowsFeature IIS"
 $Audit = New-Object -TypeName System.Object
 $Audit | Add-Member -MemberType NoteProperty -Name GroupID -Value $GroupID
 $Audit | Add-Member -MemberType NoteProperty -Name GroupTitle -Value $GroupTitle

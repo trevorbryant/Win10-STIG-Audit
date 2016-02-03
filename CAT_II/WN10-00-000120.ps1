@@ -1,20 +1,20 @@
 ﻿## Windows 10 STIG Compliance Audit
 ## Created by Trevor Bryant
 
-$GroupID = "V-63381"
-$GroupTitle = "WN10-00-000105"
-$RuleID = "SV-77871r1_rule"
+$GroupID = "V-63389"
+$GroupTitle = "WN10-00-000120"
+$RuleID = "SV-77879r1_rule"
 $Severity = "CAT II"
-$RuleVersionSTIGID = "WN10-00-000105"
-$RuleTitle = "Simple Network Management Protocol (SNMP) must not be installed on the system."
+$RuleVersionSTIGID = "WN10-00-000120"
+$RuleTitle = "The TFTP Client must not be installed on the system."
 $CCI = "CCI-000382"
 
 $Configuration = ""
-If (Get-Process "SNMP Service" -ErrorAction SilentlyContinue)
+If (Get-ChildItem C:\Windows\System32\tftp.exe -ErrorAction SilentlyContinue)
     {
-        $Configuration = "SNMP Service present"
+        $Configuration = "TFTP Client is installed"
     } Else {
-        $Configuration = "SNMP Service is not present"
+        $Configuration = "TFTP Client is not installed"
 }
 
 $Audit = New-Object -TypeName System.Object

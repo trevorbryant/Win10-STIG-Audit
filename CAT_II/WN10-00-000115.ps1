@@ -1,20 +1,20 @@
 ﻿## Windows 10 STIG Compliance Audit
 ## Created by Trevor Bryant
 
-$GroupID = "V-63381"
-$GroupTitle = "WN10-00-000105"
-$RuleID = "SV-77871r1_rule"
+$GroupID = "V-63385"
+$GroupTitle = "WN10-00-000115"
+$RuleID = "SV-77875r1_rule"
 $Severity = "CAT II"
-$RuleVersionSTIGID = "WN10-00-000105"
-$RuleTitle = "Simple Network Management Protocol (SNMP) must not be installed on the system."
+$RuleVersionSTIGID = "WN10-00-000115"
+$RuleTitle = "The Telnet Client must not be installed on the system."
 $CCI = "CCI-000382"
 
 $Configuration = ""
-If (Get-Process "SNMP Service" -ErrorAction SilentlyContinue)
+If (Get-ChildItem C:\Windows\System32\telnet.exe -ErrorAction SilentlyContinue)
     {
-        $Configuration = "SNMP Service present"
+        $Configuration = "Telnet is installed"
     } Else {
-        $Configuration = "SNMP Service is not present"
+        $Configuration = "Telnet is not installed"
 }
 
 $Audit = New-Object -TypeName System.Object

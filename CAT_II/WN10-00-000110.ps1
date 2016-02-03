@@ -1,20 +1,20 @@
 ﻿## Windows 10 STIG Compliance Audit
 ## Created by Trevor Bryant
 
-$GroupID = "V-63381"
-$GroupTitle = "WN10-00-000105"
-$RuleID = "SV-77871r1_rule"
+$GroupID = "V-63383"
+$GroupTitle = "WN10-00-000110"
+$RuleID = "SV-77873r1_rule"
 $Severity = "CAT II"
-$RuleVersionSTIGID = "WN10-00-000105"
-$RuleTitle = "Simple Network Management Protocol (SNMP) must not be installed on the system."
-$CCI = "CCI-000382"
+$RuleVersionSTIGID = "WN10-00-000110"
+$RuleTitle = "Simple TCP/IP Services must not be installed on the system."
+$CCI = "CCI-000381"
 
 $Configuration = ""
-If (Get-Process "SNMP Service" -ErrorAction SilentlyContinue)
+If ((Get-Service).DisplayName -Eq "Simple TCP/IP Services")
     {
-        $Configuration = "SNMP Service present"
+        $Configuration = "Simple TCP/IP Services is installed"
     } Else {
-        $Configuration = "SNMP Service is not present"
+        $Configuration = "Simple TCP/IP Services is not installed"
 }
 
 $Audit = New-Object -TypeName System.Object

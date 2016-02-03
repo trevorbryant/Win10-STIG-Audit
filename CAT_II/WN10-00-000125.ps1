@@ -1,20 +1,20 @@
 ﻿## Windows 10 STIG Compliance Audit
 ## Created by Trevor Bryant
 
-$GroupID = "V-63381"
-$GroupTitle = "WN10-00-000105"
-$RuleID = "SV-77871r1_rule"
+$GroupID = "V-63395"
+$GroupTitle = "WN10-00-000125"
+$RuleID = "SV-77885r1_rule"
 $Severity = "CAT II"
-$RuleVersionSTIGID = "WN10-00-000105"
-$RuleTitle = "Simple Network Management Protocol (SNMP) must not be installed on the system."
-$CCI = "CCI-000382"
+$RuleVersionSTIGID = "WN10-00-000125"
+$RuleTitle = "The HBSS McAfee Agent must be installed."
+$CCI = "CCI-000366"
 
 $Configuration = ""
-If (Get-Process "SNMP Service" -ErrorAction SilentlyContinue)
+If (Get-Service masvc -ErrorAction SilentlyContinue)
     {
-        $Configuration = "SNMP Service present"
+        $Configuration = "McAfee Agent Service is present"
     } Else {
-        $Configuration = "SNMP Service is not present"
+        $Configuration = "McAfee Agent Service is not present"
 }
 
 $Audit = New-Object -TypeName System.Object
